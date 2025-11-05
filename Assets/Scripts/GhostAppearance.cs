@@ -21,20 +21,22 @@ public class GhostAppearance : MonoBehaviour
           
         }
 
-        SpawnGhost();
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SpawnGhost();
+        }
+
     }
 
     private void SpawnGhost() {
         int randomGraveIndex = UnityEngine.Random.Range(0, graveSites.Count);
         Instantiate(ghostToSpawn, graveSites[randomGraveIndex].position, ghostRotation);
-        Debug.Log(randomGraveIndex);
     }
 
 }

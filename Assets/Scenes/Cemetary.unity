@@ -503,6 +503,26 @@ PolygonCollider2D:
       - {x: 0.9012265, y: -1.6449807}
       - {x: 0.93756634, y: -1.6328675}
   m_UseDelaunayMesh: 0
+--- !u!1 &80467965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1223931552211355980, guid: 7b396ff1ab7b32347820887d4077cbec, type: 3}
+  m_PrefabInstance: {fileID: 1519003131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &80467968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80467965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3a64a769f71a044b3e9a8622122404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllDeathSequences:
+  - {fileID: -6894033868233604878, guid: a339961f54310154ebc4a88c587505d6, type: 3}
+  - {fileID: 0}
 --- !u!1 &84636888
 GameObject:
   m_ObjectHideFlags: 0
@@ -5207,6 +5227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1223931552211355980, guid: 7b396ff1ab7b32347820887d4077cbec, type: 3}
+      propertyPath: m_TagString
+      value: GameManager
+      objectReference: {fileID: 0}
     - target: {fileID: 3039395654898781982, guid: 7b396ff1ab7b32347820887d4077cbec, type: 3}
       propertyPath: gravesObject
       value: 
@@ -5222,7 +5246,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1223931552211355980, guid: 7b396ff1ab7b32347820887d4077cbec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 80467968}
   m_SourcePrefab: {fileID: 100100000, guid: 7b396ff1ab7b32347820887d4077cbec, type: 3}
 --- !u!1 &1525303208
 GameObject:
