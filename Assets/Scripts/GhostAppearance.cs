@@ -10,6 +10,7 @@ public class GhostAppearance : MonoBehaviour
     public GameObject gravesObject;
     private List<Transform> graveSites = new List<Transform>();
     public GameObject ghostToSpawn;
+    public Quaternion ghostRotation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +21,7 @@ public class GhostAppearance : MonoBehaviour
           
         }
 
-        InvokeRepeating("SpawnGhost", 5f, 5f);
+        SpawnGhost();
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class GhostAppearance : MonoBehaviour
 
     private void SpawnGhost() {
         int randomGraveIndex = UnityEngine.Random.Range(0, graveSites.Count);
-        Instantiate(ghostToSpawn, graveSites[randomGraveIndex].position, Quaternion.identity);
+        Instantiate(ghostToSpawn, graveSites[randomGraveIndex].position, ghostRotation);
         Debug.Log(randomGraveIndex);
     }
 
