@@ -6,13 +6,20 @@ using UnityEngine.UI;
 
 public class Ghost : MonoBehaviour
 {
-
-    private string[] ArrayOfItems = { "Duck", "Nose", "Rose", "Ribbon" };
+    //items 1 = Duck, 2 = Rose, 3 = Ribbon, 4 = Nose
     public List<string> chosenItem;
-    [SerializeField]
+    private int[] printedItems = new int[4];
+   [SerializeField]
     private Image deathSequenceHolder;
     private DeathSequence sequenceScript;
-    public Image deathSequenceImage;
+    public Sprite deathSequenceImage;
+    private List<int> itemsNeeded = new List<int>();
+    public Sprite zzzImage;
+    public Sprite booImage;
+    private GhostAppearance ghostAppearanceScript;
+    private bool itemFound;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,27 +27,44 @@ public class Ghost : MonoBehaviour
         sequenceScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DeathSequence>();
         //StartCoroutine(DieAfter5());
         deathSequenceImage =  sequenceScript.AllDeathSequences[Random.Range(0, sequenceScript.AllDeathSequences.Count)]; 
-        deathSequenceHolder.sprite = deathSequenceImage.sprite;
+        deathSequenceHolder.sprite = deathSequenceImage;
+        ghostAppearanceScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GhostAppearance>();
 
-        Debug.Log(deathSequenceImage);
+
         switch (deathSequenceImage.name) {
-            case "Drowning(DuckRose)":
-                Debug.Log("Need the Nose or the Ribbon");
+            case "IMG_1737_0":
+                itemsNeeded.Add(4);
+                itemsNeeded.Add(3);
+                //printList();
                 break;
-            case "Proposal(Rose)":
-                Debug.Log("Need the Nose, the Duck, or the Ribbon");
+            case "IMG_1741_0":
+                itemsNeeded.Add(4);
+                itemsNeeded.Add(1);
+                itemsNeeded.Add(3);
+               // printList(); ;
                 break;
-            case "Race(DuckRibbonRose)":
-                Debug.Log("Need the Nose");
+            case "IMG_1736_0":
+                itemsNeeded.Add(4);
+                itemsNeeded.Add(3); 
+                //printList();
                 break;
-            case "ReindeerRunOver(Nose)":
-                Debug.Log("Need the Ribbon, the Rose, or the Duck");
+            case "IMG_1740_0":
+                itemsNeeded.Add(1);
+                itemsNeeded.Add(2);
+                itemsNeeded.Add(3);
+               // printList();
                 break;
-            case "Smothered(Duck)":
-            Debug.Log("Need the Nose, the Ribbon, or the Rose");
+            case "IMG_1739_0":
+                itemsNeeded.Add(4);
+                itemsNeeded.Add(3);
+                itemsNeeded.Add(2);
+               // printList();
                 break;
-            case "Train(Ribbon)":
-                Debug.Log("Need the Nose, the Rose, or the Duck");
+            case "IMG_1738_0":
+                itemsNeeded.Add(4);
+                itemsNeeded.Add(1);
+                itemsNeeded.Add(2);
+                //printList();
                 break;
         }
     }
@@ -52,8 +76,38 @@ public class Ghost : MonoBehaviour
     }
 
 
-    IEnumerator DieAfter5() {
-        yield return new WaitForSeconds(5.5f);
-        Destroy(this.gameObject);    
+    public IEnumerator DieAfter2() {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+      
+    }
+
+    private void printList() {
+        foreach (var item in itemsNeeded) {
+            printedItems[item - 1] = item;
+        }
+        Debug.Log(printedItems[0] + ", " + printedItems[1] + ", " + printedItems[2] + ", " + printedItems[3]);
+
+    }
+
+    public void itemCheck(int itemUsed) {
+
+        foreach (var item in itemsNeeded) {
+            if (item == itemUsed) {
+                itemFound = true;
+            }
+        }
+
+
+        if (itemFound)
+        {
+            deathSequenceHolder.sprite = zzzImage;
+            ghostAppearanceScript.ghostsSleepyed += 1;
+        }
+        else {
+            deathSequenceHolder.sprite = booImage;
+            ghostAppearanceScript.ghostsMad += 1;
+        }
+
     }
 }

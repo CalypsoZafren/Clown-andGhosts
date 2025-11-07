@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     private float xRotation;
     private Rigidbody2D rb;
     private Vector3 originalScale;
+    private Ghost currentGhost;
+    private bool ghostInRange = false;
+    [SerializeField]
+    private GameObject Pocket;
+    public Animator pocketAnim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +30,13 @@ public class Player : MonoBehaviour
         xRotation = originalScale.x;
     }
 
+    private void Update()
+    {
+        ObjectInput();
+
+       
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -32,7 +44,7 @@ public class Player : MonoBehaviour
         MovementInput();
         MovePlayer();
         RotatePlayer();
-        ObjectInput();
+  
         
     }
 
@@ -70,24 +82,53 @@ public class Player : MonoBehaviour
 
     private void ObjectInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            Debug.Log("Using Duck");
+        if (Input.GetKeyDown(KeyCode.Alpha1) && ghostInRange) {
+            currentGhost.itemCheck(1);
+            currentGhost.StartCoroutine(currentGhost.DieAfter2());
+
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ghostInRange)
         {
-            Debug.Log("Using Nose");
+            currentGhost.itemCheck(2);
+            currentGhost.StartCoroutine(currentGhost.DieAfter2());
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && ghostInRange)
         {
-            Debug.Log("Using Rose");
+            currentGhost.itemCheck(3);         
+            currentGhost.StartCoroutine(currentGhost.DieAfter2());           
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && ghostInRange)
         {
-            Debug.Log("Using Ribbon");
+            currentGhost.itemCheck(4);
+            currentGhost.StartCoroutine(currentGhost.DieAfter2());
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ghost"))
+        {
+            currentGhost = collision.GetComponentInParent<Ghost>();
+            ghostInRange = true;
+            pocketAnim.SetBool("Open", true);
+            pocketAnim.SetBool("Close", false);
+            //Debug.Log("Hit Ghost");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ghost"))
+        {
+            currentGhost = null;
+            ghostInRange = false;
+            pocketAnim.SetBool("Open", false);
+            pocketAnim.SetBool("Close", true);
+            //Debug.Log("Left Ghost");
+        }
     }
 }

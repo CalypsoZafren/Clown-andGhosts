@@ -1,12 +1,13 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.UI;
 
 public class DeathSequence : MonoBehaviour
 {
 
-    //Need to make a list of all death sequence images
-    //public List<Image> AllDeathSequences;
+    public List<Sprite> AllDeathSequences;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
