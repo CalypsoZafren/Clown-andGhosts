@@ -66,13 +66,13 @@ public class Player : MonoBehaviour
         if(xMovement > 0)
         {
             facingRight = false;
-            xRotation = originalScale.x * 1;
+            xRotation = originalScale.x * -1;
 
         }
         else if (xMovement < 0)
         {
             facingRight = true;
-            xRotation = originalScale.y * -1;
+            xRotation = originalScale.y * 1;
         }
 
 

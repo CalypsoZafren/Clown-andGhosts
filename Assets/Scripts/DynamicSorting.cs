@@ -4,16 +4,19 @@ public class DynamicSorting : MonoBehaviour
 {
 
     private Transform sortPoint;
+    private Transform playerSortPoint;
     private Transform player;
     private SpriteRenderer objectSprite;
     private SpriteRenderer playerSprite;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sortPoint = transform.GetChild(0);
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        sortPoint = transform.GetChild(0);
+        playerSortPoint = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0);
         objectSprite = GetComponent<SpriteRenderer>();
         playerSprite = player.GetComponent<SpriteRenderer>();
     }
@@ -26,9 +29,9 @@ public class DynamicSorting : MonoBehaviour
     }
 
     private void SortObject() { 
-        if (player.position.y > sortPoint.position.y) { 
+        if (playerSortPoint.position.y > sortPoint.position.y) { 
             objectSprite.sortingOrder = playerSprite.sortingOrder + 1;
-        } else if(player.position.y < sortPoint.position.y){
+        } else if(playerSortPoint.position.y < sortPoint.position.y){
             objectSprite.sortingOrder = playerSprite.sortingOrder - 1;
         }
     }

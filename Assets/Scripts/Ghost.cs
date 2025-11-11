@@ -66,6 +66,22 @@ public class Ghost : MonoBehaviour
                 itemsNeeded.Add(2);
                 //printList();
                 break;
+            case "IMG_1744_0":
+                itemsNeeded.Add(1);
+                itemsNeeded.Add(2);
+                //printList();
+                break;
+            case "IMG_1745_0":
+                itemsNeeded.Add(3);
+                itemsNeeded.Add(4);
+                //printList();
+                break;
+            case "IMG_1741 (1)_0":
+                itemsNeeded.Add(1);
+                itemsNeeded.Add(2);
+                itemsNeeded.Add(3);
+                //printList();
+                break;
         }
     }
 
@@ -79,6 +95,8 @@ public class Ghost : MonoBehaviour
     public IEnumerator DieAfter2() {
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
+
+        ghostAppearanceScript.PingGraves();
       
     }
 
