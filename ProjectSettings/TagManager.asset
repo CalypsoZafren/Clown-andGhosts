@@ -8,6 +8,7 @@ TagManager:
   - Ghost
   - GhostsSleepyedText
   - GhostsMadText
+  - FinalScoreText
   layers:
   - Default
   - TransparentFX

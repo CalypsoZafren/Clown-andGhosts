@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ public class GhostAppearance : MonoBehaviour
 
     public GameObject gravesObject;
     private List<Transform> graveSites = new List<Transform>();
-    public GameObject ghostToSpawn;
+    public GameObject madGhostToSpawn;
+    public GameObject sadGhostToSpawn;
     public Quaternion ghostRotation;
     private int currentPhase = 1;
     public int ghostsInPhase1;
@@ -21,10 +23,15 @@ public class GhostAppearance : MonoBehaviour
     public int ghostsMad = 0;
     public int maxGhostsMad = 5;
     private TextMeshProUGUI ghostSleepeyedText;
-    private TextMeshProUGUI ghostsMadText;
+    public TextMeshProUGUI ghostsMadText;
     private Transform player;
     private bool allGravesFull = false;
     private DeathManager deathManagerScript;
+    private float madGhostAppearanceThreshhold = .1f;
+    public bool firstMadGhost = false;
+    public bool firstSadGhost = false;
+    public TipHolder tipHolder;
+    public AudioSource backgroundAudio;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,6 +50,7 @@ public class GhostAppearance : MonoBehaviour
         Debug.Log(ghostSleepeyedText);
   
        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+       backgroundAudio = GetComponent<AudioSource>();
 
         StartCoroutine(GhostTimer());
     }
@@ -78,8 +86,21 @@ public class GhostAppearance : MonoBehaviour
             }
         }
 
-       
-        Instantiate(ghostToSpawn, graveSites[randomGraveIndex].position, ghostRotation);
+        if(UnityEngine.Random.Range(0f, 1f) <= madGhostAppearanceThreshhold) {
+            Instantiate(sadGhostToSpawn, graveSites[randomGraveIndex].position, ghostRotation);
+            if (!firstSadGhost) {
+                firstSadGhost = true;
+                tipHolder.Ping("Sad"); 
+                Debug.Log("Should be pinging sad tip");
+            }
+        } else {
+            Instantiate(madGhostToSpawn, graveSites[randomGraveIndex].position, ghostRotation);
+            if (!firstMadGhost) {
+                firstMadGhost = true;
+                tipHolder.Ping("Mad");
+                Debug.Log("Should be pinging mad tip");
+            }
+        }
         graveSites[randomGraveIndex].GetComponent<Grave>().isOccupied = true;
 
         
@@ -112,14 +133,19 @@ public class GhostAppearance : MonoBehaviour
         if (ghostsSleepyed < ghostsInPhase1)
         {
             currentPhase = 1;
+            madGhostAppearanceThreshhold = .1f;
         }
         else if (ghostsSleepyed >= ghostsInPhase1 && ghostsSleepyed < (ghostsInPhase1 + ghostsInPhase2))
         {
             currentPhase = 2;
+            madGhostAppearanceThreshhold = .25f;
+            backgroundAudio.pitch = 1.2f;
         }
         else if (ghostsSleepyed >= (ghostsInPhase1 + ghostsInPhase2) && ghostsSleepyed < (ghostsInPhase1 + ghostsInPhase2 + ghostsInPhase3))
         {
             currentPhase = 3;
+            madGhostAppearanceThreshhold = .4f;
+            backgroundAudio.pitch = 1.5f;
         }
     }
 
@@ -132,6 +158,7 @@ public class GhostAppearance : MonoBehaviour
 
     private void UpdateScore() {
         ghostSleepeyedText.text = ghostsSleepyed.ToString();
+        //gameEndGhostsSleepeyedText.text = ghostsSleepyed.ToString();
         ghostsMadText.text = ghostsMad.ToString();
 
         if(ghostsMad == maxGhostsMad) {
@@ -139,15 +166,8 @@ public class GhostAppearance : MonoBehaviour
         }
     }
 
-
-    public void PingGraves() { 
-       foreach (Transform grave in graveSites) {
-            Grave graveScript = grave.GetComponent<Grave>();
-            if (graveScript.playerInRange) {
-                graveScript.isOccupied = false;
-                break;
-            }
-        }
+    public void PingPlayer() { 
+        player.GetComponent<Player>().currentGrave.isOccupied = false;
     }
 
 

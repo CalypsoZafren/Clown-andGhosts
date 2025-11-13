@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class DeathManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class DeathManager : MonoBehaviour
     public void Death() { 
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
+        GameObject.FindGameObjectWithTag("FinalScoreText").GetComponent<TextMeshProUGUI>().text = ghostAppearanceScript.ghostsSleepyed.ToString();
 
     }
 }

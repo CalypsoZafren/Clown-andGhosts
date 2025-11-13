@@ -1,4 +1,4 @@
-using UnityEditor.UI;
+//using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject Pocket;
     public Animator pocketAnim;
+    public Grave currentGrave;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

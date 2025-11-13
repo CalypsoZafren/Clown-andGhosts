@@ -18,6 +18,7 @@ public class Ghost : MonoBehaviour
     public Sprite booImage;
     private GhostAppearance ghostAppearanceScript;
     private bool itemFound;
+    public bool sadGhost = false;
 
 
 
@@ -33,53 +34,132 @@ public class Ghost : MonoBehaviour
 
         switch (deathSequenceImage.name) {
             case "IMG_1737_0":
-                itemsNeeded.Add(4);
-                itemsNeeded.Add(3);
+                //Drowning in Lake
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                }
+                else {
+                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(3);
+                }
+                
                 //printList();
                 break;
             case "IMG_1741_0":
-                itemsNeeded.Add(4);
-                itemsNeeded.Add(1);
-                itemsNeeded.Add(3);
+                //Electrocuted proposal
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(2);
+               
+                }
+                else
+                {
+                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(3);
+                }
+
                // printList(); ;
                 break;
             case "IMG_1736_0":
-                itemsNeeded.Add(4);
-                itemsNeeded.Add(3); 
-                //printList();
-                break;
+                //Lost race to duck
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(3);
+                }
+                else
+                {
+                    itemsNeeded.Add(4);
+                }
+                    //printList();
+                    break;
             case "IMG_1740_0":
-                itemsNeeded.Add(1);
-                itemsNeeded.Add(2);
-                itemsNeeded.Add(3);
+                //Red nose reindeer
+                if (sadGhost)
+                {
+                   itemsNeeded.Add(4);
+                }
+                else
+                {
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(3);
+                }
+        
                // printList();
                 break;
             case "IMG_1739_0":
-                itemsNeeded.Add(4);
-                itemsNeeded.Add(3);
-                itemsNeeded.Add(2);
+                //Drowning in ducks
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(1);
+                }
+                else {
+                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(2);
+                }
+                
                // printList();
                 break;
             case "IMG_1738_0":
-                itemsNeeded.Add(4);
-                itemsNeeded.Add(1);
-                itemsNeeded.Add(2);
+                //Scarf in train
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(3);
+                }
+                else
+                {
+                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                }
                 //printList();
                 break;
             case "IMG_1744_0":
-                itemsNeeded.Add(1);
-                itemsNeeded.Add(2);
+                //Crushed by Carnival Ball
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(4);
+                }
+                else {
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                }
+               
                 //printList();
                 break;
             case "IMG_1745_0":
-                itemsNeeded.Add(3);
-                itemsNeeded.Add(4);
+                //Duck in trenchcoat
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(1);
+                }
+                else {
+                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(2);
+                }
+                
                 //printList();
                 break;
-            case "IMG_1741 (1)_0":
-                itemsNeeded.Add(1);
-                itemsNeeded.Add(2);
-                itemsNeeded.Add(3);
+            case "IMG_1747 (1)_0":
+                //Murdered by clown
+                if (sadGhost)
+                {
+                    itemsNeeded.Add(4);
+                }
+                else {
+                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(3);
+                }
+               
                 //printList();
                 break;
         }
@@ -93,10 +173,11 @@ public class Ghost : MonoBehaviour
 
 
     public IEnumerator DieAfter2() {
+        ghostAppearanceScript.PingPlayer();
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
 
-        ghostAppearanceScript.PingGraves();
+        
       
     }
 

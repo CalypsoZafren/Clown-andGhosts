@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1043610340687513649}
-  - component: {fileID: 3039395654898781982}
+  - component: {fileID: -2553404201866826698}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3039395654898781982
+--- !u!114 &-2553404201866826698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,4 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravesObject: {fileID: 0}
-  ghostToSpawn: {fileID: 594492839129745502, guid: 20baaa439103fee47906f4573674ca8a, type: 3}
+  madGhostToSpawn: {fileID: 594492839129745502, guid: 20baaa439103fee47906f4573674ca8a, type: 3}
+  sadGhostToSpawn: {fileID: 594492839129745502, guid: 3d77d7a9de9714e43a9d39e46265a7ea, type: 3}
+  ghostRotation: {x: 0, y: 0, z: 0, w: 0}
+  ghostsInPhase1: 0
+  ghostsInPhase2: 0
+  ghostsInPhase3: 0
+  ghostsSleepyed: 0
+  ghostsMad: 0
+  maxGhostsMad: 5
