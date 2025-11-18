@@ -19,6 +19,11 @@ public class Ghost : MonoBehaviour
     private GhostAppearance ghostAppearanceScript;
     private bool itemFound;
     public bool sadGhost = false;
+    private int Duck;
+    private int Rose;
+    private int Ribbon;
+    private int Nose;
+    private Pocket pocketScript;
 
 
 
@@ -30,6 +35,11 @@ public class Ghost : MonoBehaviour
         deathSequenceImage =  sequenceScript.AllDeathSequences[Random.Range(0, sequenceScript.AllDeathSequences.Count)]; 
         deathSequenceHolder.sprite = deathSequenceImage;
         ghostAppearanceScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GhostAppearance>();
+        pocketScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Pocket>();
+        Duck = pocketScript.returnDuckNum();
+        Rose = pocketScript.returnRoseNum();
+        Ribbon = pocketScript.returnRibbonNum();
+        Nose = pocketScript.returnNoseNum();
 
 
         switch (deathSequenceImage.name) {
@@ -37,12 +47,12 @@ public class Ghost : MonoBehaviour
                 //Drowning in Lake
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
                 }
                 else {
-                    itemsNeeded.Add(4);
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Ribbon);
                 }
                 
                 //printList();
@@ -51,14 +61,14 @@ public class Ghost : MonoBehaviour
                 //Electrocuted proposal
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Rose);
                
                 }
                 else
                 {
-                    itemsNeeded.Add(4);
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Ribbon);
                 }
 
                // printList(); ;
@@ -67,13 +77,13 @@ public class Ghost : MonoBehaviour
                 //Lost race to duck
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                    itemsNeeded.Add(Ribbon);
                 }
                 else
                 {
-                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(Nose);
                 }
                     //printList();
                     break;
@@ -81,13 +91,13 @@ public class Ghost : MonoBehaviour
                 //Red nose reindeer
                 if (sadGhost)
                 {
-                   itemsNeeded.Add(4);
+                   itemsNeeded.Add(Nose);
                 }
                 else
                 {
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                    itemsNeeded.Add(Ribbon);
                 }
         
                // printList();
@@ -96,12 +106,12 @@ public class Ghost : MonoBehaviour
                 //Drowning in ducks
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(Duck);
                 }
                 else {
-                    itemsNeeded.Add(4);
-                    itemsNeeded.Add(3);
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Rose);
                 }
                 
                // printList();
@@ -110,13 +120,13 @@ public class Ghost : MonoBehaviour
                 //Scarf in train
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Ribbon);
                 }
                 else
                 {
-                    itemsNeeded.Add(4);
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
                 }
                 //printList();
                 break;
@@ -124,12 +134,12 @@ public class Ghost : MonoBehaviour
                 //Crushed by Carnival Ball
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(3);
-                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Nose);
                 }
                 else {
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
                 }
                
                 //printList();
@@ -138,12 +148,12 @@ public class Ghost : MonoBehaviour
                 //Duck in trenchcoat
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(4);
-                    itemsNeeded.Add(1);
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Duck);
                 }
                 else {
-                    itemsNeeded.Add(3);
-                    itemsNeeded.Add(2);
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Rose);
                 }
                 
                 //printList();
@@ -152,12 +162,12 @@ public class Ghost : MonoBehaviour
                 //Murdered by clown
                 if (sadGhost)
                 {
-                    itemsNeeded.Add(4);
+                    itemsNeeded.Add(Nose);
                 }
                 else {
-                    itemsNeeded.Add(1);
-                    itemsNeeded.Add(2);
-                    itemsNeeded.Add(3);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                    itemsNeeded.Add(Ribbon);
                 }
                
                 //printList();

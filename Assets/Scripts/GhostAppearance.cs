@@ -37,6 +37,7 @@ public class GhostAppearance : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Time.timeScale = 1f;
         for (int i = 0; i < gravesObject.transform.childCount; i++)
         {
             graveSites.Add(gravesObject.transform.GetChild(i).GetComponent<Transform>());
@@ -133,18 +134,18 @@ public class GhostAppearance : MonoBehaviour
         if (ghostsSleepyed < ghostsInPhase1)
         {
             currentPhase = 1;
-            madGhostAppearanceThreshhold = .1f;
+            madGhostAppearanceThreshhold = .15f;
         }
         else if (ghostsSleepyed >= ghostsInPhase1 && ghostsSleepyed < (ghostsInPhase1 + ghostsInPhase2))
         {
             currentPhase = 2;
-            madGhostAppearanceThreshhold = .25f;
+            madGhostAppearanceThreshhold = .3f;
             backgroundAudio.pitch = 1.2f;
         }
         else if (ghostsSleepyed >= (ghostsInPhase1 + ghostsInPhase2) && ghostsSleepyed < (ghostsInPhase1 + ghostsInPhase2 + ghostsInPhase3))
         {
             currentPhase = 3;
-            madGhostAppearanceThreshhold = .4f;
+            madGhostAppearanceThreshhold = .45f;
             backgroundAudio.pitch = 1.5f;
         }
     }

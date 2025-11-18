@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5394909531109419164}
   - component: {fileID: 5780203363909472623}
   - component: {fileID: 1565658544548986245}
+  - component: {fileID: -211380498946151995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,6 +108,7 @@ MonoBehaviour:
   facingRight: 1
   Pocket: {fileID: 0}
   pocketAnim: {fileID: 0}
+  currentGrave: {fileID: 0}
 --- !u!50 &5780203363909472623
 Rigidbody2D:
   serializedVersion: 5
@@ -171,6 +173,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.3587585, y: -6.3196664}
   m_Size: {x: 3.062251, y: 3.062251}
   m_Direction: 0
+--- !u!114 &-211380498946151995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899345439656972427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729a396a68f4a243b078e1ceb9839ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allItems:
+  - {fileID: 8868729072188591806, guid: 8b71b7c2a1e5a0f4897b8259452f8f31, type: 3}
+  - {fileID: 2419474886375136085, guid: d25b3d07960dd4546bfd37955ef1c76d, type: 3}
+  - {fileID: 857312311372029537, guid: 84035f975323dd74db722ba1d106503e, type: 3}
+  - {fileID: -7643109652412921367, guid: 6ab856708982d4546ad3c2f27d4dc102, type: 3}
 --- !u!1 &2582740560387696835
 GameObject:
   m_ObjectHideFlags: 0

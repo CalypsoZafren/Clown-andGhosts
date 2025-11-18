@@ -9,6 +9,7 @@ TagManager:
   - GhostsSleepyedText
   - GhostsMadText
   - FinalScoreText
+  - Pocket
   layers:
   - Default
   - TransparentFX
