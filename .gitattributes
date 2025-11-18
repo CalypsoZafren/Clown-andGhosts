@@ -1,3 +1,4 @@
 *.psd filter=lfs diff=lfs merge=lfs -text
 *.unity filter=lfs diff=lfs merge=lfs -text
+*.resS filter=lfs diff=lfs merge=lfs -text
 Build2/Clowns[[:space:]]and[[:space:]]Ghosts_Data/sharedassets0.assets.resS filter=lfs diff=lfs merge=lfs -text
