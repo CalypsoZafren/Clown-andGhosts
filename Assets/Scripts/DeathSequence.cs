@@ -7,6 +7,7 @@ public class DeathSequence : MonoBehaviour
 {
 
     public List<Sprite> AllDeathSequences;
+    public List<Sprite> AllMemorySequences;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -32,8 +32,7 @@ public class Ghost : MonoBehaviour
     {
         sequenceScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DeathSequence>();
         //StartCoroutine(DieAfter5());
-        deathSequenceImage =  sequenceScript.AllDeathSequences[Random.Range(0, sequenceScript.AllDeathSequences.Count)]; 
-        deathSequenceHolder.sprite = deathSequenceImage;
+       
         ghostAppearanceScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GhostAppearance>();
         pocketScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Pocket>();
         Duck = pocketScript.returnDuckNum();
@@ -41,138 +40,25 @@ public class Ghost : MonoBehaviour
         Ribbon = pocketScript.returnRibbonNum();
         Nose = pocketScript.returnNoseNum();
 
-
-        switch (deathSequenceImage.name) {
-            case "IMG_1737_0":
-                //Drowning in Lake
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                }
-                else {
-                    itemsNeeded.Add(Ribbon);
-                    itemsNeeded.Add(Ribbon);
-                }
-                
-                //printList();
-                break;
-            case "IMG_1741_0":
-                //Electrocuted proposal
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Rose);
-               
-                }
-                else
-                {
-                    itemsNeeded.Add(Nose);
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Ribbon);
-                }
-
-               // printList(); ;
-                break;
-            case "IMG_1736_0":
-                //Lost race to duck
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                    itemsNeeded.Add(Ribbon);
-                }
-                else
-                {
-                    itemsNeeded.Add(Nose);
-                }
-                    //printList();
-                    break;
-            case "IMG_1740_0":
-                //Red nose reindeer
-                if (sadGhost)
-                {
-                   itemsNeeded.Add(Nose);
-                }
-                else
-                {
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                    itemsNeeded.Add(Ribbon);
-                }
-        
-               // printList();
-                break;
-            case "IMG_1739_0":
-                //Drowning in ducks
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Duck);
-                }
-                else {
-                    itemsNeeded.Add(Nose);
-                    itemsNeeded.Add(Ribbon);
-                    itemsNeeded.Add(Rose);
-                }
-                
-               // printList();
-                break;
-            case "IMG_1738_0":
-                //Scarf in train
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Ribbon);
-                }
-                else
-                {
-                    itemsNeeded.Add(Nose);
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                }
-                //printList();
-                break;
-            case "IMG_1744_0":
-                //Crushed by Carnival Ball
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Ribbon);
-                    itemsNeeded.Add(Nose);
-                }
-                else {
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                }
-               
-                //printList();
-                break;
-            case "IMG_1745_0":
-                //Duck in trenchcoat
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Nose);
-                    itemsNeeded.Add(Duck);
-                }
-                else {
-                    itemsNeeded.Add(Ribbon);
-                    itemsNeeded.Add(Rose);
-                }
-                
-                //printList();
-                break;
-            case "IMG_1747 (1)_0":
-                //Murdered by clown
-                if (sadGhost)
-                {
-                    itemsNeeded.Add(Nose);
-                }
-                else {
-                    itemsNeeded.Add(Duck);
-                    itemsNeeded.Add(Rose);
-                    itemsNeeded.Add(Ribbon);
-                }
-               
-                //printList();
-                break;
+        if (sadGhost)
+        {
+            
+            deathSequenceImage = sequenceScript.AllMemorySequences[Random.Range(0, sequenceScript.AllMemorySequences.Count)];
+            deathSequenceHolder.sprite = deathSequenceImage;
+            sadGhostSwitch();
         }
+        else {
+            
+            deathSequenceImage = sequenceScript.AllDeathSequences[Random.Range(0, sequenceScript.AllDeathSequences.Count)];
+            deathSequenceHolder.sprite = deathSequenceImage;
+            madGhostSwitch();
+        }
+          
+
+
+        
+
+
     }
 
     // Update is called once per frame
@@ -191,6 +77,143 @@ public class Ghost : MonoBehaviour
       
     }
 
+    private void sadGhostSwitch()
+    {
+        switch (deathSequenceImage.name)
+        {
+            case "Memory_duck-rose_0":
+                itemsNeeded.Add(Duck);
+                itemsNeeded.Add(Rose);
+                break;
+            case "Memory_duck-rose-ribbon_0":
+                itemsNeeded.Add(Duck);
+                itemsNeeded.Add(Rose);
+                itemsNeeded.Add(Ribbon);
+                break;
+            case "Memory_nose-rose-ribbon_0":
+                itemsNeeded.Add(Nose);
+                itemsNeeded.Add(Rose);
+                itemsNeeded.Add(Ribbon);
+                break;
+            case "Memory_rose-nose_0":
+                itemsNeeded.Add(Nose);
+                itemsNeeded.Add(Rose);
+                break;
+            case "Memory_rose-ribbon_0":
+                itemsNeeded.Add(Ribbon);
+                itemsNeeded.Add(Rose);
+                break;
+        }
+    }
+    
+
+
+    private void madGhostSwitch() {
+        switch (deathSequenceImage.name)
+        {
+            case "IMG_1737_0":
+                //Drowning in Lake
+                
+               
+                {
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Nose);
+                }
+
+                //printList();
+                break;
+            case "IMG_1741_0":
+                //Electrocuted proposal
+                
+                
+                {
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Ribbon);
+                }
+
+                // printList(); ;
+                break;
+            case "Death_duck-rose-ribbon_0":
+                //Lost race to duck
+                
+                {
+                    itemsNeeded.Add(Nose);
+                }
+                //printList();
+                break;
+            case "IMG_1740_0":
+                //Red nose reindeer
+                
+                {
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                    itemsNeeded.Add(Ribbon);
+                }
+
+                // printList();
+                break;
+            case "IMG_1739_0":
+                //Drowning in ducks
+                
+                {
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Rose);
+                }
+
+                // printList();
+                break;
+            case "IMG_1738_0":
+                //Scarf in train
+                
+                {
+                    itemsNeeded.Add(Nose);
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                }
+                //printList();
+                break;
+            case "IMG_1744_0":
+                //Crushed by Carnival Ball
+                
+                {
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Rose);
+                }
+
+                //printList();
+                break;
+            case "IMG_1745_0":
+                //Duck in trenchcoat
+                
+                {
+                    itemsNeeded.Add(Ribbon);
+                    itemsNeeded.Add(Rose);
+                }
+
+                //printList();
+                break;
+            case "IMG_1747 (1)_0":
+                //Murdered by clown
+                
+                {
+                    itemsNeeded.Add(Duck);
+                    itemsNeeded.Add(Ribbon);
+                }
+
+                //printList();
+                break;
+            case "Death_nose-rose-ribbon_0":
+                //Died in field
+                
+                {
+                    itemsNeeded.Add(Duck);
+
+                }
+                break;
+        }
+    }
     private void printList() {
         foreach (var item in itemsNeeded) {
             printedItems[item - 1] = item;
